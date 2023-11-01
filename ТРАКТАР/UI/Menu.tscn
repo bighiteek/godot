@@ -1,0 +1,192 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjeiknbhrvdu6"]
+
+[ext_resource type="PackedScene" path="res://UI/Transition/Transition.tscn" id="1"]
+[ext_resource type="Script" path="res://UI/Menu.gd" id="2"]
+[ext_resource type="PackedScene" path="res://UI/AnimatedButton/AnimatedButton.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://cqi4tvogux0mh" path="res://World/Side World.png" id="4"]
+[ext_resource type="PackedScene" path="res://Player/Player.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Objects/DeathTrigger/DeathTrigger.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Objects/Trampoline/Trampoline.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://Objects/Coin/Coin.tscn" id="8"]
+[ext_resource type="FontFile" uid="uid://dd1fetcoart4w" path="res://Fonts/yoster.ttf" id="9"]
+[ext_resource type="PackedScene" path="res://UI/DialogBox/DialogBox.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://b1rd58vmm4urg" path="res://Objects/DialogArea/Assets/Sign.png" id="11"]
+[ext_resource type="PackedScene" path="res://Objects/DialogArea/DialogArea.tscn" id="12"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ys430"]
+texture = ExtResource("4")
+
+[sub_resource type="TileSet" id="11"]
+sources/0 = SubResource("TileSetAtlasSource_ys430")
+
+[sub_resource type="FontFile" id="12"]
+fallbacks = Array[Font]([ExtResource("9")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Animation" id="13"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+
+[sub_resource type="Animation" id="14"]
+resource_name = "Wobble"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dafc1"]
+_data = {
+"RESET": SubResource("13"),
+"Wobble": SubResource("14")
+}
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("2")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.631373, 0.956863, 1, 1)
+
+[node name="Load" type="Timer" parent="."]
+one_shot = true
+
+[node name="WorldMap" type="TileMap" parent="."]
+scale = Vector2(4, 4)
+tile_set = SubResource("11")
+format = 2
+
+[node name="DeathTrigger" parent="WorldMap" instance=ExtResource("6")]
+position = Vector2(128, 184)
+scale = Vector2(256, 1)
+
+[node name="Trampoline" parent="WorldMap" instance=ExtResource("7")]
+position = Vector2(164, 78)
+
+[node name="Trampoline2" parent="WorldMap" instance=ExtResource("7")]
+position = Vector2(82, 60)
+
+[node name="Coin" parent="WorldMap" instance=ExtResource("8")]
+position = Vector2(84, 38)
+
+[node name="Coin2" parent="WorldMap" instance=ExtResource("8")]
+position = Vector2(14, 86)
+
+[node name="Coin3" parent="WorldMap" instance=ExtResource("8")]
+position = Vector2(172, 120)
+
+[node name="Coin4" parent="WorldMap" instance=ExtResource("8")]
+position = Vector2(248, 68)
+
+[node name="DialogArea" parent="WorldMap" instance=ExtResource("12")]
+position = Vector2(200, 120)
+text = "A game made by YOUR NAME and Finn Pickart"
+
+[node name="Sign" type="Sprite2D" parent="WorldMap/DialogArea"]
+texture = ExtResource("11")
+
+[node name="Player" parent="." instance=ExtResource("5")]
+position = Vector2(314, 463)
+scale = Vector2(4, 4)
+speed = 800
+jump_height = 256.0
+climb_speed = 600
+
+[node name="TextBox" parent="." instance=ExtResource("10")]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -72.0
+offset_right = -16.0
+offset_bottom = -16.0
+text = ""
+
+[node name="Play" parent="." instance=ExtResource("3")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -184.0
+offset_right = 64.0
+offset_bottom = -120.0
+text = "Play"
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+pivot_offset = Vector2(512, 64)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("12")
+text = "Your Title here"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
+autoplay = "Wobble"
+libraries = {
+"": SubResource("AnimationLibrary_dafc1")
+}
+
+[node name="Transition" parent="." instance=ExtResource("1")]
+visible = false
+anchors_preset = 15
+mouse_filter = 2
+start_closed = true
+
+[node name="DialogArea" parent="." instance=ExtResource("12")]
+
+[connection signal="timeout" from="Load" to="." method="_on_Load_timeout"]
+[connection signal="button_down" from="Play" to="." method="_on_Play_button_down"]
