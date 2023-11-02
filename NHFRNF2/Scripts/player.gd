@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var move_speed : float = 400
 @export var jump_force : float = 600
 @export var gravity : float = 30
-@export var max_jump_count : int = 20
+@export var max_jump_count : int = 2
 var jump_count : int = 3
 
 @export_category("Toggle Functions") # Double jump feature is disable by default (Can be toggled from inspector)

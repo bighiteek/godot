@@ -34,8 +34,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8tma"]
 size = Vector2(175.5, 106)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbjh"]
-size = Vector2(177, 107)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avruv"]
+size = Vector2(110.25, 180)
 
 [sub_resource type="Curve" id="Curve_m2jh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -61,8 +61,9 @@ shape = SubResource("RectangleShape2D_g8tma")
 [node name="Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2(5, -17)
-shape = SubResource("RectangleShape2D_tvbjh")
+position = Vector2(3, -17)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_avruv")
 
 [node name="ParticleTrails" type="CPUParticles2D" parent="."]
 position = Vector2(-68, 35)
