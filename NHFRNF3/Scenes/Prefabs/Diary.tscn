@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdtarr7l6qnw0"]
+
+[ext_resource type="Script" path="res://Scripts/LevelFinishDoor.gd" id="1_1ma07"]
+[ext_resource type="Texture2D" uid="uid://d4ixl3f7vtnwb" path="res://Assets/Textures/diary2.png" id="2_vvedw"]
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_1ma07")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(36.5625, -28.75)
+scale = Vector2(0.156094, 0.156349)
+texture = ExtResource("2_vvedw")
+region_rect = Rect2(520, 208, 48, 32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(38.5402, -26.2687)
+scale = Vector2(2.05061, 2.08104)
+polygon = PackedVector2Array(-22, -16, 8, -17, 26, -15, 25, -1, 21, 14, -1, 14, -22, 14, -23, -5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

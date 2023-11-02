@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cscefx55gcjap"]
+
+[ext_resource type="Script" path="res://Scripts/LevelDoor.gd" id="1_hw3jj"]
+[ext_resource type="Texture2D" uid="uid://b6ujey4mdshh3" path="res://Assets/Textures/door.png" id="2_n3gwj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34g1n"]
+size = Vector2(100, 286)
+
+[node name="LevelFinishDoor" type="Area2D"]
+script = ExtResource("1_hw3jj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_n3gwj")
+region_rect = Rect2(320, 320, 64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, -64)
+scale = Vector2(0.981061, 0.980128)
+texture = ExtResource("2_n3gwj")
+region_rect = Rect2(320, 320, 64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(-1.75834e-06, -63.2312)
+scale = Vector2(1.00901, 1.00378)
+texture = ExtResource("2_n3gwj")
+region_rect = Rect2(320, 320, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_34g1n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -100)
+scale = Vector2(3, 8)
+polygon = PackedVector2Array(-17.6667, -17.375, -16.6667, 18.875, 17.3333, 18.625, 16.3333, -17.625)
+one_way_collision_margin = 0.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

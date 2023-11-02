@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://df5x28817t63"]
+
+[ext_resource type="Script" path="res://Scripts/Keys.gd" id="1_ue6my"]
+[ext_resource type="Texture2D" uid="uid://cunan6ub2ruvh" path="res://Assets/Textures/Yellow_key.png" id="9_8pit2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34g1n"]
+size = Vector2(68.25, 55.5)
+
+[node name="Yellow_Key" type="Area2D"]
+z_index = 1
+position = Vector2(42, 29)
+script = ExtResource("1_ue6my")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(41.2956, 28.9357)
+scale = Vector2(1.5, 1.34375)
+texture = ExtResource("9_8pit2")
+region_enabled = true
+region_rect = Rect2(-0.697151, -1.07172, 47.123, 39.0294)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_34g1n")
