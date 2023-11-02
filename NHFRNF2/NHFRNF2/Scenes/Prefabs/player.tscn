@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://w7m6tehvvy3g"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
+[ext_resource type="Texture2D" uid="uid://b8jwt0eypgf" path="res://Assets/Spritesheet/kandinsky-download-1698825995625125.png" id="2_8tlj7"]
+[ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4nss6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8tlj7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8tlj7")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8tlj7")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8tma"]
+size = Vector2(175.5, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avruv"]
+size = Vector2(110.25, 180)
+
+[sub_resource type="Curve" id="Curve_m2jh0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_3gc37"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_qt7d6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.05508, 1.4019)
+scale = Vector2(0.201476, 0.186715)
+sprite_frames = SubResource("SpriteFrames_4nss6")
+animation = &"Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -17)
+shape = SubResource("RectangleShape2D_g8tma")
+
+[node name="Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(3, -17)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_avruv")
+
+[node name="ParticleTrails" type="CPUParticles2D" parent="."]
+position = Vector2(-68, 35)
+emitting = false
+amount = 20
+lifetime = 0.4
+speed_scale = 0.8
+texture = ExtResource("3_8vxmb")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_m2jh0")
+color_ramp = SubResource("Gradient_3gc37")
+
+[node name="ParticleTrails2" type="CPUParticles2D" parent="."]
+position = Vector2(72, 43)
+emitting = false
+amount = 20
+lifetime = 0.4
+speed_scale = 0.8
+texture = ExtResource("3_8vxmb")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_m2jh0")
+color_ramp = SubResource("Gradient_3gc37")
+
+[connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
