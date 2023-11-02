@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfmh3fm2de78o"]
+[gd_scene load_steps=7 format=3 uid="uid://danj3ebgke4ph"]
 
-[ext_resource type="Script" path="res://Scripts/Coin.gd" id="1_hh4vd"]
-[ext_resource type="Texture2D" uid="uid://cqju0j3b7ln74" path="res://Assets/photo_5339080645047078059_x.png" id="2_b4eqk"]
-[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="3_7eb8x"]
+[ext_resource type="Script" path="res://Scripts/Coin.gd" id="1_koyc6"]
+[ext_resource type="Texture2D" uid="uid://cqju0j3b7ln74" path="res://Assets/photo_5339080645047078059_x.png" id="2_in6y1"]
+[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="3_q5pio"]
+[ext_resource type="Texture2D" uid="uid://rupi8s1ktabm" path="res://Assets/колоски.png" id="4_wex0k"]
 
 [sub_resource type="Curve" id="Curve_yh7uo"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.494709, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -13,21 +14,22 @@ offsets = PackedFloat32Array(0.625, 1)
 colors = PackedColorArray(0.914063, 0.734375, 0, 1, 1, 1, 1, 0)
 
 [node name="Coin" type="Area2D"]
-script = ExtResource("1_hh4vd")
+position = Vector2(1311, 171)
+script = ExtResource("1_koyc6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_b4eqk")
+texture = ExtResource("2_in6y1")
 region_enabled = true
 region_rect = Rect2(520, 208, 48, 32)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(9.57589, -6.8)
 scale = Vector2(1.34821, 1.30357)
-polygon = PackedVector2Array(-8, -14, 8, -14, 12.9238, -10.126, 13.6656, 2.14794, 2, 14, -14.5199, 24.3945, -24.904, 20.5589, -17, -5)
+polygon = PackedVector2Array(-9.32788, -8.59179, 0.314575, -12.4274, 9.21521, -5.52329, 16.6325, 8.28494, 13.6656, 20.5589, -18.2286, 20.5589, -19.712, 10.5863, -15.2617, -0.920547)
 
 [node name="CoinSparkles" type="CPUParticles2D" parent="."]
 amount = 4
-texture = ExtResource("3_7eb8x")
+texture = ExtResource("3_q5pio")
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
@@ -40,8 +42,8 @@ scale_amount_curve = SubResource("Curve_yh7uo")
 color_ramp = SubResource("Gradient_kkhmu")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(2, -3)
-scale = Vector2(0.153355, 0.153355)
-texture = ExtResource("2_b4eqk")
+position = Vector2(6.00003, -5.00001)
+scale = Vector2(0.726621, 0.726621)
+texture = ExtResource("4_wex0k")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
