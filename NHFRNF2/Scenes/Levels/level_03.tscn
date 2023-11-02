@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bblj3cs8hihqy"]
+[gd_scene load_steps=14 format=3 uid="uid://bblj3cs8hihqy"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="1_vy822"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="2_rpeix"]
@@ -274,6 +274,19 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 255
 sources/0 = SubResource("TileSetAtlasSource_g6dm6")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
+texture = ExtResource("4_6gdk5")
+texture_region_size = Vector2i(64, 64)
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_lcfcg"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rndpx")
+
 [node name="level_03" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_vy822")]
@@ -324,6 +337,11 @@ layer_0/tile_data = PackedInt32Array(458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 4
 unique_name_in_owner = true
 position = Vector2(500, 350)
 
+[node name="Traps" type="TileMap" parent="Level" groups=["Traps"]]
+tile_set = SubResource("TileSet_lcfcg")
+format = 2
+layer_0/tile_data = PackedInt32Array(1310715, 0, 5, 1310716, 0, 5, 1310717, 0, 5, 1310718, 0, 5, 1310719, 0, 5, 1245184, 0, 5, 1245185, 0, 5, 1245186, 0, 5, 1245187, 0, 5, 1245188, 0, 5, 1245189, 0, 5, 1245190, 0, 5, 1245191, 0, 5, 1245192, 0, 5, 1245193, 0, 5, 1245194, 0, 5, 1245195, 0, 5, 1245196, 0, 5, 1245197, 0, 5, 1245198, 0, 5, 1245199, 0, 5, 1245200, 0, 5, 1245201, 0, 5, 1245202, 0, 5, 1245203, 0, 5, 1245204, 0, 5, 1245205, 0, 5, 1245206, 0, 5, 1245207, 0, 5, 1245208, 0, 5, 1245209, 0, 5, 1245210, 0, 5, 393269, 0, 5, 393268, 0, 5, 42, 0, 5, -327612, 0, 5, -327611, 0, 5, -327610, 0, 5, -65525, 0, 5)
+
 [node name="UserInterface" type="CanvasLayer" parent="."]
 
 [node name="GameUI" type="Control" parent="UserInterface"]
@@ -345,6 +363,7 @@ offset_left = 39.0972
 offset_top = 34.702
 offset_right = 79.0972
 offset_bottom = 74.702
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
@@ -359,6 +378,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("6_0x71x")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score/ScoreLabel"]
 unique_name_in_owner = true
@@ -370,6 +390,7 @@ offset_right = 13.9028
 offset_bottom = 70.2976
 texture = ExtResource("7_7srxv")
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("8_k2nv2")]
 z_index = 1
